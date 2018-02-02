@@ -1,4 +1,4 @@
-.PHONY: all image package dist clean
+.PHONY: all image package dist clean deploy
 
 all: package
 
@@ -14,3 +14,6 @@ dist: package
 clean:
 	rm -r lambda/node_modules
 	docker rmi --force amazonlinux:nodejs
+
+deploy:
+	docker run --rm -it --volume ${PWD}:/usr/src/app rabbitbird/awscli:1.1 bash -c 'aws configure && bin/deploy'
