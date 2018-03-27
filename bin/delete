@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -o errexit
+
+stack_name=ServerlessImageResize
+
+aws s3 rb s3://${bucket_name} --force
+aws cloudformation describe-stacks --stack-name ${stack_name}
+
+
