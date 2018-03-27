@@ -1,0 +1,8 @@
+.idea
+.git
+.gitignore
+Dockerfile
+Makefile
+README.md
+LICENSE
+dist
