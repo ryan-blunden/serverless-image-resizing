@@ -2,10 +2,8 @@
 
 set -o errexit
 
-stack_name=ServerlessImageResize
+# Empty bucket so CloudFormation can delete it
+s3_bucket_name=`cat s3.json | jq -r '.Buckets[] | select( .Name | contains("serverless") ) | .Name'`
+aws s3 rm s3://${s3_bucket_name} --recursive
 
-aws s3 rb s3://${image_bucket_name} --force
-aws s3 rb s3://${deployment_bucket_name} --force
-aws cloudformation describe-stacks --stack-name ${stack_name}
-
-
+aws cloudformation delete-stack --stack-name ServerlessImageResize

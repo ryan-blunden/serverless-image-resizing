@@ -16,7 +16,10 @@ clean:
 	docker image rm --force amazonlinux:nodejs
 
 deploy:
-	docker container run --rm -it --volume ${PWD}:/usr/src/app rabbitbird/awscli:1.0 bash -c 'aws configure && bin/deploy'
+		docker container run --rm -it --volume ${PWD}:/usr/src/app rabbitbird/awscli:1.0 bash -c 'aws configure && bin/deploy'
 
 delete:
-	docker container run --rm -it --volume ${PWD}:/usr/src/app rabbitbird/awscli:1.0 bash -c 'aws configure && image_bucket_name=${IMAGE_BUCKET_NAME} deployment_bucket_name=${DEPLOYMENT_BUCKET_NAME} bin/delete'
+	docker container run --rm -it --volume ${PWD}:/usr/src/app rabbitbird/awscli:1.0 bash -c 'aws configure && bin/delete'
+
+dev:
+	docker container run --rm -it --volume ${PWD}:/usr/src/app rabbitbird/awscli:1.0 bash

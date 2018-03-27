@@ -13,7 +13,7 @@ Resources:
 
   ImageBucket:
     Type: AWS::S3::Bucket
-    DeletionPolicy: Retain
+    DeletionPolicy: Delete
     Properties:
       AccessControl: PublicRead
       WebsiteConfiguration:
@@ -29,7 +29,7 @@ Resources:
 
   ResizeFunction:
     Type: AWS::Serverless::Function
-    Properties:
+    Properties:s3
       CodeUri: ./dist/function.zip
       Handler: index.handler
       Runtime: nodejs6.10
